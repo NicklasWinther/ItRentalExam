@@ -23,7 +23,8 @@
                         <td>@equipment.Category</td>
                         <td>@equipment.Units</td>
                         <td>
-                            <a href=""><i class="fa fa-edit" aria-hidden="true"></i></a>&nbsp;&nbsp;<a href=""><i class="fa fa-trash" aria-hidden="true"></i>
+                            <a href=""><i class="fa fa-edit" aria-hidden="true"></i></a>&nbsp;&nbsp;
+                            <a href=""><i class="fa fa-trash" aria-hidden="true"></i>
                             </a>
                         </td>
                     </tr>
@@ -35,7 +36,7 @@
     <br />
     <h2>Opret nyt IT-udstyr</h2>
     <div class="form">
-        <form asp-page="Equipments">
+        <form method="post" asp-page="Equipments">
             <label asp-for="Equipment.Name"></label>
             <input asp-for="Equipment.Name" />
             <label asp-for="Equipment.Category"></label>
