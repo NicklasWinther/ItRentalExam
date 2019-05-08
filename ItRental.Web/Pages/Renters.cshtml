@@ -1,0 +1,57 @@
+﻿@page
+@model ItRental.Web.Pages.RentersModel
+@{
+    ViewData["Title"] = "Renters";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h2>Lånere</h2>
+<div class="form">
+    <form method="post" asp-page-handler="Search">
+        <label asp-for="NameSearch"></label>
+        <input asp-for="NameSearch" placeholder="Skriv navn" value="@Model.NameSearch"/>
+        <input type="submit" value="Søg efter lånere" />
+        @if (!string.IsNullOrWhiteSpace(Model.MessageSearch))
+        {
+            <p>@Model.MessageSearch</p>
+        }
+    </form>
+</div>
+<table>
+    <tr>
+        <th>Navn</th>
+        <th>Rettighedder</th>
+        <th>Rediger</th>
+    </tr>
+    <tbody>
+        @{
+            foreach (Renter renter in Model.Renters)
+            {
+                <tr>
+                    <td>@renter.Name</td>
+                    <td>@renter.RenterLevel</td>
+                    <td>
+                        <a href=""><i class="fa fa-edit" aria-hidden="true"></i></a>&nbsp;&nbsp;
+                        <a href=""><i class="fa fa-trash" aria-hidden="true"></i></a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+<br />
+<br />
+
+<div class="form">
+    <form method="post" asp-page-handler="Add">
+        <label asp-for="NewRenter.Name"></label>
+        <input asp-for="NewRenter.Name" />
+        <label asp-for="NewRenter.RenterLevel"></label>
+        <select asp-for="NewRenter.RenterLevel" asp-items="Html.GetEnumSelectList<RenterLevel>()"></select>
+        <input type="submit" value="Opret låner" />
+        @if (Model.MessageAdd != "")
+        {
+            <p>@Model.MessageAdd</p>
+        }
+    </form>
+</div>
