@@ -12,9 +12,14 @@ namespace ItRental.Entities
         public Equipment Equipment { get; set; }
         public int Units { get; set; }
         public Renter Renter { get; set; }
+
         public bool IsRentalOverdue()
         {
-            throw new NotImplementedException();
+            if (ReturnRime < DateTime.Now)
+            {
+                return true;
+            }
+            return false;
         }
         public int CompareTo(object obj)
         {

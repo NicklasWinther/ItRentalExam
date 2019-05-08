@@ -6,21 +6,42 @@
 }
 
 <h2>Lånere</h2>
-<div class="form">
-    <form method="post" asp-page-handler="Search">
-        <label asp-for="NameSearch"></label>
-        <input asp-for="NameSearch" placeholder="Skriv navn" value="@Model.NameSearch"/>
-        <input type="submit" value="Søg efter lånere" />
-        @if (!string.IsNullOrWhiteSpace(Model.MessageSearch))
-        {
-            <p>@Model.MessageSearch</p>
-        }
-    </form>
+<div class="forms">
+    <div class="form">
+        <form method="post" asp-page-handler="Search">
+            <h3>Søg efter lånere</h3>
+            <label asp-for="NameSearch"></label>
+            <input asp-for="NameSearch" placeholder="Skriv navn" value="@Model.NameSearch" />
+            <input type="submit" value="Søg efter lånere" />
+            @if (!string.IsNullOrWhiteSpace(Model.MessageSearch))
+            {
+                <p>@Model.MessageSearch</p>
+            }
+        </form>
+    </div>
+
+    <div class="form">
+        <form method="post" asp-page-handler="Add">
+            <h3>Opret låner</h3>
+            <label asp-for="NewRenter.Name"></label>
+            <input asp-for="NewRenter.Name" placeholder="Skriv navn her" />
+            <label asp-for="NewRenter.RenterLevel"></label>
+            <select asp-for="NewRenter.RenterLevel" asp-items="Html.GetEnumSelectList<RenterLevel>()"></select>
+            <input type="submit" value="Opret låner" />
+            @if (Model.MessageAdd != "")
+            {
+                <p>@Model.MessageAdd</p>
+            }
+        </form>
+    </div>
 </div>
+
+<h2>Alle lånere</h2>
+
 <table>
     <tr>
         <th>Navn</th>
-        <th>Rettighedder</th>
+        <th>Rettigheder</th>
         <th>Rediger</th>
     </tr>
     <tbody>
@@ -42,16 +63,32 @@
 <br />
 <br />
 
-<div class="form">
-    <form method="post" asp-page-handler="Add">
-        <label asp-for="NewRenter.Name"></label>
-        <input asp-for="NewRenter.Name" />
-        <label asp-for="NewRenter.RenterLevel"></label>
-        <select asp-for="NewRenter.RenterLevel" asp-items="Html.GetEnumSelectList<RenterLevel>()"></select>
-        <input type="submit" value="Opret låner" />
-        @if (Model.MessageAdd != "")
-        {
-            <p>@Model.MessageAdd</p>
+<h2>Lånere som har udlån der er overskredet</h2>
+
+<table>
+    <tr>
+        <th>Navn</th>
+        <th>Rettigheder</th>
+        <th>Rediger</th>
+    </tr>
+    <tbody>
+        @{
+            foreach (Rental rental in Model.Rentals)
+            {
+                if (rental.IsRentalOverdue())
+                {
+
+                    <tr>
+                        <td>@rental.Renter.Name</td>
+                        <td>@rental.Renter.RenterLevel</td>
+                        <td>
+                            <a href=""><i class="fa fa-edit" aria-hidden="true"></i></a>&nbsp;&nbsp;
+                            <a href=""><i class="fa fa-trash" aria-hidden="true"></i></a>
+                        </td>
+                    </tr>
+                }
+            }
         }
-    </form>
-</div>
+    </tbody>
+</table><br /><br />
+

@@ -1,4 +1,6 @@
 ﻿USE [master]
+IF EXISTS(select * from sys.databases where name='ItRental')
+DROP DATABASE ItRental
 GO
 /****** Object:  Database [ItRental]    Script Date: 07-05-2019 14:53:22 ******/
 CREATE DATABASE [ItRental]
@@ -28,3 +30,19 @@ INSERT [dbo].[Equipments] ([EquipmentId], [Name], [Category], [Units]) VALUES (6
 GO
 SET IDENTITY_INSERT [dbo].[Equipments] OFF
 GO
+
+GO
+CREATE TABLE Renters(
+RenterId INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+Name nvarchar(MAX) NOT NULL,
+RenterLevel int NOT NULL
+);
+GO
+CREATE TABLE Rentals(
+RentalId INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+RentalTime datetime2(0) NOT NULL,
+ReturnTime datetime2(0) NOT NULL,
+EquipmentId INT FOREIGN KEY REFERENCES Equipments(EquipmentId) NOT NULL ,
+Units INT NOT NULL,
+RenterId int FOREIGN KEY REFERENCES Renters(RenterId) NOT NULL
+);

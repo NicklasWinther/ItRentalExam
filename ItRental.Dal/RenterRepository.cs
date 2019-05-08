@@ -39,6 +39,12 @@ namespace ItRental.Dal
             ExecuteNonQuery(sql);
         }
 
+        internal Renter GetRenter(int id)
+        {
+            string sql = $"SELECT * FROM Renters WHERE RenterId = {id}";
+            return HandleData(ExecuteQuery(sql))[0];
+        }
+
         public List<Renter> SearchRenters(string nameSearch)
         {
             string sql = $"SELECT * FROM Renters WHERE Name LIKE '%{nameSearch}%'";

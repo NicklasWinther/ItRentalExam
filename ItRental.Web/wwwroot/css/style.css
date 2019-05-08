@@ -43,6 +43,16 @@ header nav {
     border-radius: 0.8rem;
     padding: 1.5rem;
 }
+.forms{
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+    align-items: flex-start,
+}
+.forms .form{
+    width: 40%;
+    align-self: flex-start;
+}
 label{
     font-size: 1.2rem;
 }

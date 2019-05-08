@@ -15,15 +15,19 @@ namespace ItRental.Web.Pages
         public List<Renter> Renters { get; set; }
         [BindProperty]
         public Renter NewRenter { get; set; }
-        [Display(Name = "Søg efter lånere")]
+        [Display(Name = "Navn")]
         [BindProperty]
         public string NameSearch { get; set; } = "";
         public string MessageSearch { get; set; }
         public string MessageAdd { get; set; } = "";
+        public List<Rental> Rentals { get; set; }
+
         public RentersModel()
         {
             RenterRepository renterRepository = new RenterRepository();
+            RentalRepository rentalRepository = new RentalRepository();
             Renters = renterRepository.GetRenters();
+            Rentals = rentalRepository.GetAllRentals();
         }
         public void OnGet()
         {
