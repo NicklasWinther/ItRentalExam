@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ItRental.Entities
 {
-    public class Rental : IComparable
+    public class Rental : IComparable<Rental>
     {
         public int Id { get; set; }
         public DateTime RentalTime { get; set; }
@@ -26,9 +26,9 @@ namespace ItRental.Entities
             return false;
         }
 
-        public int CompareTo(object obj)
+        public int CompareTo(Rental other)
         {
-            return ReturnTime.CompareTo(obj);
+            return ReturnTime.CompareTo(other.ReturnTime);
         }
     }
 }

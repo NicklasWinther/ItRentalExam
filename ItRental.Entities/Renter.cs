@@ -16,7 +16,12 @@ namespace ItRental.Entities
         public int NumberOfRentals { get; }
         public Rental NextRentalDue()
         {
-            throw new NotImplementedException();
+            if (Rentals.Count == 0)
+            {
+                return null;
+            }
+            Rentals.Sort();
+            return Rentals[0];
         }
         public bool GotOverdueRental()
         {
