@@ -40,11 +40,11 @@
         <label asp-for="Rental.Equipment"></label>
         <select asp-for="Rental.Equipment.Id" asp-items="@(new SelectList(Model.Equipments, "Id", "Name"))"></select>
         <label asp-for="Rental.Units"></label>
-        <input asp-for="Rental.Units" />
+        <input asp-for="Rental.Units" required/>
         <label asp-for="Rental.RentalTime"></label>
-        <input asp-for="Rental.RentalTime" type="date"/><br />
+        <input asp-for="Rental.RentalTime" type="date" required/><br />
         <label asp-for="Rental.ReturnTime"></label>
-        <input asp-for="Rental.ReturnTime" type="date"/><br />
+        <input asp-for="Rental.ReturnTime" type="date" required/><br />
         <input type="submit" value="Lån" />
     </form>
 </div>

@@ -26,8 +26,19 @@ namespace ItRental.Web.Pages
         {
             RenterRepository renterRepository = new RenterRepository();
             RentalRepository rentalRepository = new RentalRepository();
+
             Renters = renterRepository.GetRenters();
             Rentals = rentalRepository.GetAllRentals();
+
+            foreach (Rental rental in Rentals)
+            {
+                rental.Renter.Rentals = rentalRepository.GetRentalsFor(rental.Renter.Id);
+            }
+
+            foreach (Renter renter in Renters)
+            {
+                renter.Rentals = rentalRepository.GetRentalsFor(renter.Id);
+            }
         }
         public void OnGet()
         {

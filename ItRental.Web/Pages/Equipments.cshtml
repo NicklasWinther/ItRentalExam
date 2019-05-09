@@ -12,7 +12,6 @@
                 <th>Navn</th>
                 <th>Kategori</th>
                 <th>Antal</th>
-                <th>Rediger</th>
             </tr>
         <tbody>
             @{
@@ -22,11 +21,6 @@
                         <td>@equipment.Name</td>
                         <td>@equipment.Category</td>
                         <td>@equipment.Units</td>
-                        <td>
-                            <a href=""><i class="fa fa-edit" aria-hidden="true"></i></a>&nbsp;&nbsp;
-                            <a href=""><i class="fa fa-trash" aria-hidden="true"></i>
-                            </a>
-                        </td>
                     </tr>
                 }
             }
@@ -38,11 +32,11 @@
     <div class="form">
         <form method="post" asp-page="Equipments">
             <label asp-for="Equipment.Name"></label>
-            <input asp-for="Equipment.Name" />
+            <input asp-for="Equipment.Name" placeholder="Skriv navn på udstyr"/>
             <label asp-for="Equipment.Category"></label>
-            <input asp-for="Equipment.Category" />
+            <input asp-for="Equipment.Category" placeholder="Skriv kategori"/>
             <label asp-for="Equipment.Units"></label>
-            <input asp-for="Equipment.Units" />
+            <input asp-for="Equipment.Units" placeholder="Angiv antal"/>
             <input type="submit" value="Opret" />
         </form>
     </div>

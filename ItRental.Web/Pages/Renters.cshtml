@@ -42,7 +42,7 @@
     <tr>
         <th>Navn</th>
         <th>Rettigheder</th>
-        <th>Rediger</th>
+        <th>Antal udlån</th>  
     </tr>
     <tbody>
         @{
@@ -51,10 +51,7 @@
         <tr>
             <td><a href="/RenterDetails/@renter.Id">@renter.Name</a></td>
             <td>@renter.RenterLevel</td>
-            <td>
-                <a href=""><i class="fa fa-edit" aria-hidden="true"></i></a>&nbsp;&nbsp;
-                <a href=""><i class="fa fa-trash" aria-hidden="true"></i></a>
-            </td>
+            <td>@renter.NumberOfRentals</td>
         </tr>
             }
         }
@@ -69,7 +66,7 @@
     <tr>
         <th>Navn</th>
         <th>Rettigheder</th>
-        <th>Rediger</th>
+        <th>Antal udlån</th>
     </tr>
     <tbody>
         @{
@@ -78,14 +75,11 @@
                 if (rental.IsRentalOverdue())
                 {
 
-                    <tr>
-                        <td><a href="/RenterDetails/@rental.Renter.Id">@rental.Renter.Name</a></td>
-                        <td>@rental.Renter.RenterLevel</td>
-                        <td>
-                            <a href=""><i class="fa fa-edit" aria-hidden="true"></i></a>&nbsp;&nbsp;
-                            <a href=""><i class="fa fa-trash" aria-hidden="true"></i></a>
-                        </td>
-                    </tr>
+        <tr>
+            <td><a href="/RenterDetails/@rental.Renter.Id">@rental.Renter.Name</a></td>
+            <td>@rental.Renter.RenterLevel</td>
+            <td>@rental.Renter.NumberOfRentals</td>
+        </tr>
                 }
             }
         }
