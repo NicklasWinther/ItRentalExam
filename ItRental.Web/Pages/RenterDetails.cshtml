@@ -18,16 +18,33 @@
         @{
             foreach (Rental rentals in Model.Renter.Rentals)
             {
-        <tr>
-            <td>@rentals.Equipment.Name</td>
-            <td>@rentals.Units</td>
-            <td>@rentals.RentalTime.ToString("dd-MM-yyyy")</td>
-            <td>@rentals.ReturnTime.ToString("dd-MM-yyyy")</td>
-            @if (rentals.IsRentalOverdue())
-            {<td>Overkredet</td>}else
-            {<td>-</td> }
-        </tr>
+                <tr>
+                    <td>@rentals.Equipment.Name</td>
+                    <td>@rentals.Units</td>
+                    <td>@rentals.RentalTime.ToString("dd-MM-yyyy")</td>
+                    <td>@rentals.ReturnTime.ToString("dd-MM-yyyy")</td>
+                    @if (rentals.IsRentalOverdue())
+                    {<td class="red">Overkredet</td>}
+                    else
+                    {<td class="green">Ikke overskredet</td>}
+                </tr>
             }
         }
     </tbody>
 </table>
+
+<h2>Lån udstyr</h2>
+<div class="form">
+    <form method="post">
+        <h3>Lån udstyr</h3>
+        <label asp-for="Rental.Equipment"></label>
+        <select asp-for="Rental.Equipment.Id" asp-items="@(new SelectList(Model.Equipments, "Id", "Name"))"></select>
+        <label asp-for="Rental.Units"></label>
+        <input asp-for="Rental.Units" />
+        <label asp-for="Rental.RentalTime"></label>
+        <input asp-for="Rental.RentalTime" type="date"/><br />
+        <label asp-for="Rental.ReturnTime"></label>
+        <input asp-for="Rental.ReturnTime" type="date"/><br />
+        <input type="submit" value="Lån" />
+    </form>
+</div>

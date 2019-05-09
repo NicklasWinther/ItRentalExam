@@ -43,5 +43,11 @@ namespace ItRental.Dal
             }
             return rentals;
         }
+
+        public void CreateRental(Rental rental)
+        {
+            string sql = $"INSERT INTO Rentals VALUES('{rental.RentalTime.ToString("yyyy-MM-dd")}', '{rental.ReturnTime.ToString("yyyy-MM-dd")}', '{rental.Equipment.Id}', '{rental.Units}', '{rental.Renter.Id}')";
+            ExecuteNonQuery(sql);
+        }
     }
 }
