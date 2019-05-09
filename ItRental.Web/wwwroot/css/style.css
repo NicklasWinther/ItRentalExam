@@ -75,9 +75,10 @@ button, input[type="submit"] {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    transition: .3s;
 }
 
-button:hover {
+button:hover, input[type="submit"]:hover{
     background-color: #222;
 }
 
@@ -120,4 +121,11 @@ th {
     text-align: left;
     background-color: darkgray;
     color: white;
+}
+
+td.green{
+    color: green;
+}
+td.red{
+    color: red;
 }

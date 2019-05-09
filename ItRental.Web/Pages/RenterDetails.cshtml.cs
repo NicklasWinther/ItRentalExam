@@ -11,13 +11,28 @@ namespace ItRental.Web.Pages
 {
     public class RenterDetailsModel : PageModel
     {
+        private RenterRepository RenterRepository { get; set; } = new RenterRepository();
+        private RentalRepository RentalRepository { get; set; } = new RentalRepository();
+        private EquipmentRepository EquipmentRepository { get; set; } = new EquipmentRepository();
+        [BindProperty]
         public Renter Renter { get; set; }
-        RenterRepository RenterRepository { get; set; } = new RenterRepository();
-        public RentalRepository RentalRepository { get; set; } = new RentalRepository();
+        [BindProperty]
+        public List<Equipment> Equipments { get; set; } 
+        [BindProperty]
+        public Rental Rental { get; set; }
+
         public void OnGet(int id)
         {
             Renter = RenterRepository.GetRenter(id);
             Renter.Rentals = RentalRepository.GetRentalsFor(Renter.Id);
+            Equipments = EquipmentRepository.GetEquipments();
+
+        }
+        public IActionResult OnPost()
+        {
+            Rental.Renter = Renter;
+            RentalRepository.CreateRental(Rental);
+            return Redirect($"~/RenterDetails/{Renter.Id}");
         }
     }
 }
