@@ -49,7 +49,7 @@
             foreach (Renter renter in Model.Renters)
             {
         <tr>
-            <td><a asp-page="RenterDetails">@renter.Name</a></td>
+            <td><a href="/RenterDetails/@renter.Id">@renter.Name</a></td>
             <td>@renter.RenterLevel</td>
             <td>
                 <a href=""><i class="fa fa-edit" aria-hidden="true"></i></a>&nbsp;&nbsp;
@@ -79,7 +79,7 @@
                 {
 
                     <tr>
-                        <td>@rental.Renter.Name</td>
+                        <td><a href="/RenterDetails/@rental.Renter.Id">@rental.Renter.Name</a></td>
                         <td>@rental.Renter.RenterLevel</td>
                         <td>
                             <a href=""><i class="fa fa-edit" aria-hidden="true"></i></a>&nbsp;&nbsp;

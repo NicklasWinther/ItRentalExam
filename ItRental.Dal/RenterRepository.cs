@@ -39,7 +39,7 @@ namespace ItRental.Dal
             ExecuteNonQuery(sql);
         }
 
-        internal Renter GetRenter(int id)
+        public Renter GetRenter(int id)
         {
             string sql = $"SELECT * FROM Renters WHERE RenterId = {id}";
             return HandleData(ExecuteQuery(sql))[0];

@@ -5,5 +5,29 @@
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
-<h2>RenterDetails</h2>
-
+<h2>Udlån til @Model.Renter.Name</h2>
+<table>
+    <tr>
+        <th>Udstyr</th>
+        <th>Antal</th>
+        <th>Lånetidspunkt</th>
+        <th>Returneringstidspunkt</th>
+        <th>Afleveringsfrist overskredet</th>
+    </tr>
+    <tbody>
+        @{
+            foreach (Rental rentals in Model.Renter.Rentals)
+            {
+        <tr>
+            <td>@rentals.Equipment.Name</td>
+            <td>@rentals.Units</td>
+            <td>@rentals.RentalTime.ToString("dd-MM-yyyy")</td>
+            <td>@rentals.ReturnTime.ToString("dd-MM-yyyy")</td>
+            @if (rentals.IsRentalOverdue())
+            {<td>Overkredet</td>}else
+            {<td>-</td> }
+        </tr>
+            }
+        }
+    </tbody>
+</table>

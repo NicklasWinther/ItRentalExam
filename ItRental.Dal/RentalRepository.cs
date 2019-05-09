@@ -13,6 +13,13 @@ namespace ItRental.Dal
             string sql = $"SELECT * FROM Rentals";
             return HandleData(ExecuteQuery(sql));
         }
+
+        public List<Rental> GetRentalsFor(int id)
+        {
+            string sql = $"SELECT * FROM Rentals WHERE RenterId = {id}";
+            return HandleData(ExecuteQuery(sql));
+        }
+
         private List<Rental> HandleData(DataTable dataTable)
         {
             EquipmentRepository equipmentRepository = new EquipmentRepository();
