@@ -12,7 +12,7 @@ namespace ItRental.Entities
         public string Name { get; set; }
         [Display(Name = "Låner rettigheder")]
         public RenterLevel RenterLevel { get; set; }
-        public List<Rental> Rentals { get; set; }
+        public List<Rental> Rentals { get; set; } = new List<Rental>();
         public int NumberOfRentals { get; }
         public Rental NextRentalDue()
         {

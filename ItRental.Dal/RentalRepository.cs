@@ -27,7 +27,7 @@ namespace ItRental.Dal
                 {
                     Id = (int)row["RentalId"],
                     RentalTime = (DateTime)row["RentalTime"],
-                    ReturnRime = (DateTime)row["ReturnTime"],
+                    ReturnTime = (DateTime)row["ReturnTime"],
                     Units = (int)row["Units"],
                     Equipment = equipmentRepository.GetEquipment((int)row["EquipmentId"]),
                     Renter = renterRepository.GetRenter((int)row["RenterId"])
